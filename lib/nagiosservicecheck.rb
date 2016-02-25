@@ -1,5 +1,5 @@
-#require 'nagiosreporter'
-#require 'nagiosservicecheckmetric'
+require 'nagiosreporter'
+require 'nagiosservicecheckmetric'
 
 
 class NagiosServiceCheck 

@@ -1,6 +1,7 @@
 require 'optparse'
 require "rubygems"
-require 'NagiosFramework'
+#require_relative 'lib/nagiosservicecheck'
+require "NagiosFramework"
 
 $nsc = NagiosServiceCheck.new("load_avg")
 
