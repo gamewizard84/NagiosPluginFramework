@@ -1,6 +1,6 @@
 require 'optparse'
 require "rubygems"
-#require_relative 'lib/nagiosservicecheck'
+
 require "NagiosFramework"
 
 $nsc = NagiosServiceCheck.new("load_avg")
@@ -11,9 +11,9 @@ def get_loadavg
 
 	results = output.split(' ')
 
-	$nsc.add_metric(NagiosServiceCheckMetric.new("loadavg_5", "int", results[0], 5, 0.01))
-	$nsc.add_metric(NagiosServiceCheckMetric.new("loadavg_10", "int", results[1], 5, 10))
-	$nsc.add_metric(NagiosServiceCheckMetric.new("loadavg_15", "int", results[2], 5, 10))
+	$nsc.add_metric(NagiosServiceCheckMetric.new("loadavg_5", "int", results[0],  $options[:warning], $options[:critical]))
+	$nsc.add_metric(NagiosServiceCheckMetric.new("loadavg_10", "int", results[1], $options[:warning], $options[:critical]))
+	$nsc.add_metric(NagiosServiceCheckMetric.new("loadavg_15", "int", results[2], $options[:warning], $options[:critical]))
 	
 end
 
@@ -27,7 +27,7 @@ $options[:loadavg] = loadavg;
 end
 
 opts.on('-w', '--warn warn', Integer,  'Warn threshold') do |warn|
-$options[:warn] = warn;
+$options[:warning] = warn;
 end
 
 opts.on('-c', '--critical critical', Integer, 'Critical threshold') do |critical|
@@ -42,9 +42,9 @@ end
 
 parser.parse!
 
-if $options[:warn] == nil
+if $options[:warning] == nil
         print 'Enter warn threshold: '
-        $options[:warn] = gets.chomp
+        $options[:warning] = gets.chomp
 end
 
 if $options[:critical] == nil
