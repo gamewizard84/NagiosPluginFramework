@@ -4,6 +4,9 @@ require "rubygems"
 require "NagiosFramework"
 
 $nsc = NagiosServiceCheck.new("load_avg")
+# Optional Add On
+$influxDB = InfluxDBReporter.new()
+$influxDB.load_from_file("/home/raymond/Desktop/NagiosFramework/conf/nagiosframework.yaml")
 
 def get_loadavg
 
@@ -61,5 +64,7 @@ end
 
 # Print Results
 $nsc.print_results(true)
+$influxDB.add_NagiosServiceCheck($nsc)
+$influxDB.write_point($nsc.name)
 exit $nsc.exit_code
 

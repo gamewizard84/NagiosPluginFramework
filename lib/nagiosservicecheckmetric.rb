@@ -17,10 +17,10 @@ EXIT_CODE =
         	@metric = Metric.new(String(name), String(measurement), Float(value)) 
         	@warning = Float(warning)
         	@critical = Float(critical)
-                
+        	                
         end
 
-public
+public	
 
 		def state
 			if @metric.value >= @critical

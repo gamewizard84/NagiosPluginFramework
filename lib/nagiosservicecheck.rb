@@ -24,13 +24,19 @@ EXIT_CODE =
 	def add_metric(nagiosServiceCheckMetric)
 
 		if !nagiosServiceCheckMetric.is_a?(NagiosServiceCheckMetric)
-			raise "The metric must be of the NagiosServiceCheckMetrics"
+			raise "The metric must be of the NagiosServiceCheckMetrics.  The metric you chose is #{nagiosServiceCheck.class}"
 		
 		else
 			@nagiosServiceCheckMetric.merge!("#{nagiosServiceCheckMetric.metric.name}" => nagiosServiceCheckMetric)			
 		end
 
 
+	end
+
+	def get_metrics
+
+		return @nagiosServiceCheckMetric
+		
 	end
 
 	def print_results(perf_metric=false)
