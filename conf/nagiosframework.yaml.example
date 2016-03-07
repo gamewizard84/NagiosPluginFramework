@@ -1,0 +1,6 @@
+-  influxdb:
+    host: example.host.com
+    username: user
+    password: password
+    database: database_name    
+    use_ssl: true
