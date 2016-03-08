@@ -65,6 +65,7 @@ end
 # Print Results
 $nsc.print_results(true)
 $influxDB.add_NagiosServiceCheck($nsc)
+$influxDB.add_tag("Application_Type", "Linux")
 $influxDB.write_point($nsc.name)
 exit $nsc.exit_code
 
