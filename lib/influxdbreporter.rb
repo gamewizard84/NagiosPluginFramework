@@ -36,7 +36,6 @@ def load_from_file(file_path)
 
 end
 
-end
 
 def add_field(nagiosServiceCheckMetric, fieldName=nagiosServiceCheckMetric.metric.name)
 
