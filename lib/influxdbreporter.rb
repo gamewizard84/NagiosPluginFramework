@@ -30,21 +30,12 @@ def load_from_file(file_path)
 													username: influxdb_config['username'],
 													password: influxdb_config['password'],
 													use_ssl: influxdb_config['use_ssl']
-
-	    puts "built connection string to --> #{influxdb_config['host']}, username --> #{influxdb_config['username']} pass --> #{influxdb_config['password']}"
-
 	else
 		raise "Unable to find file --> #{file_path}"
 	end
 
 end
 
-def test
-	@data.each do | key, value |
-	puts "key = #{key}"
-	puts "value = #{value}"
-end
-	
 end
 
 def add_field(nagiosServiceCheckMetric, fieldName=nagiosServiceCheckMetric.metric.name)
