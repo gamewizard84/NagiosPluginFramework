@@ -9,20 +9,26 @@ EXIT_CODE =
         ok:       0 }
 	
 		
-		attr_reader :metric, :warning, :critical, :exitcode
+		attr_reader :metric, :warning, :critical, :exitcode, :doesAlert
 
-        def initialize(name, measurement, value, warning, critical)
+        def initialize(name, measurement, value, warning, critical, doesAlert=true)
 
 
         	@metric = Metric.new(String(name), String(measurement), Float(value)) 
         	@warning = Float(warning)
         	@critical = Float(critical)
+        	@doesAlert = doesAlert
         	                
         end
 
 public	
 
 		def state
+
+			if @doesAlert == false
+				return :ok
+			end
+			
 			if @metric.value >= @critical
 				@exitcode = :critical
 				return :critical

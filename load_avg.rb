@@ -15,7 +15,7 @@ def get_loadavg
 	results = output.split(' ')
 
 	$nsc.add_metric(NagiosServiceCheckMetric.new("loadavg_5", "int", results[0],  $options[:warning], $options[:critical]))
-	$nsc.add_metric(NagiosServiceCheckMetric.new("loadavg_10", "int", results[1], $options[:warning], $options[:critical]))
+	$nsc.add_metric(NagiosServiceCheckMetric.new("loadavg_10", "int", results[1], $options[:warning], $options[:critical], false))	
 	$nsc.add_metric(NagiosServiceCheckMetric.new("loadavg_15", "int", results[2], $options[:warning], $options[:critical]))
 	
 end
